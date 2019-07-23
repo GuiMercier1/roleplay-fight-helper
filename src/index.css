@@ -34,3 +34,12 @@
     width: 100%;
     height: 80px;
 }
+
+.name-td {
+    max-width: 100px;
+    word-break: break-word;
+}
+
+.name-input {
+    width: 100%;
+}

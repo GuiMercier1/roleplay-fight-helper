@@ -62,7 +62,7 @@ class Player extends React.Component {
         let playerInit;
 
         if (player.isEditing) {
-            playerName = <input type="text" name="name" value={this.state.name} placeholder="Nom" onChange={this.handleNameChange}></input>;
+            playerName = <input className="name-input" type="text" name="name" value={this.state.name} placeholder="Nom" onChange={this.handleNameChange}></input>;
             playerInit = <input type="number" className="player-init-input" name="init" value={this.state.init} placeholder="Init" onChange={this.handleInitChange}></input>;
             actionButtons = <div className="action-buttons-wrapper">
                 <button className="btn btn-success" onClick={() => this.saveChanges()}><i className="fas fa-check"></i></button>
@@ -73,7 +73,7 @@ class Player extends React.Component {
             playerInit = player.init;
 
             if (isStarted && player.status !== STATUSES.DEAD) {
-                actionButtons = <button className="btn btn-outline-danger btn-sm kill-player" onClick={this.props.onKill}><i className="fas fa-skull"></i></button>;
+                actionButtons = <button className="btn btn-outline-danger kill-player" onClick={this.props.onKill}><i className="fas fa-skull"></i></button>;
             } else if (isStarted && player.status === STATUSES.DEAD) {
                 actionButtons = <button className="btn btn-success revive-player" onClick={this.props.onRevive}><i className="fas fa-hand-holding-heart"></i></button>;
             } else {
@@ -100,8 +100,8 @@ class Player extends React.Component {
 
         return (
             <tr className={className}>
-                <td>{playerName}</td>
-                <td className="player-status-wrapper">{playerStatus}</td>
+                <td className="name-td">{playerName}</td>
+                {isStarted ? <td className="player-status-wrapper">{playerStatus}</td> : null}
                 <td>{playerInit}</td>
                 <td>{actionButtons}</td>
             </tr>
@@ -243,6 +243,10 @@ class Game extends React.Component {
             return player.status !== STATUSES.UNDEFINED;
         });
 
+        players.forEach(function (player) {
+            player.isEditing = false;
+        });
+
         setActivePlayer(players, 0);
 
         this.setState({
@@ -324,13 +328,16 @@ class Game extends React.Component {
                     <thead className="thead-dark">
                         <tr>
                             <th scope="col">Nom</th>
-                            <th scope="col"></th>
+                            {this.state.isStarted ? <th scope="col"></th> : null}
                             <th scope="col">Init</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
                     <tbody>{playerList}</tbody>
                 </table>
+                {this.state.isStarted ? (<a className="fixed-button-wrapper next-player" onClick={() => this.next()}>
+                    <i className="floating-icon fas fa-forward"></i>
+                </a>) : null}
             </div>
         );
     }
