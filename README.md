@@ -1,6 +1,6 @@
 ## ROLEPLAY FIGHT HELPER
 
-This small app deserves to help the game masters when a fight occurs.
+This small app - made with ReactJS - deserves to help the game masters when a fight occurs.
 
 You can add players with their init, kill / revive them when necessary, and hit next to know which player is playing next.
 
