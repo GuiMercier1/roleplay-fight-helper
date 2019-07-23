@@ -1,0 +1,36 @@
+.player-status-wrapper {
+    text-align: center;
+}
+
+.action-buttons-wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+
+.fixed-button-wrapper {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+.floating-icon {
+    color: #FFF;
+    margin-top: 12px;
+    font-size: 35px;
+    margin-left: 4px;
+}
+
+.player-init-input {
+    max-width: 50px;
+}
+
+.empty-fill {
+    width: 100%;
+    height: 80px;
+}
